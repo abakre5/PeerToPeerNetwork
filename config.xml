@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Peers>
+	<Peer>
+		<server>localhost</server>
+		<port>1234</port>
+		<serverName>Server0</serverName>
+	</Peer>
+	<Peer>
+		<server>localhost</server>
+		<port>11344</port>
+		<serverName>Server1</serverName>
+	</Peer>
+	<Peer>
+		<server>localhost</server>
+		<port>5245</port>
+		<serverName>Server2</serverName>
+	</Peer>
+</Peers>
