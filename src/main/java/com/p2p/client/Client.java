@@ -115,8 +115,8 @@ public class Client {
 	
     public static void main(String[] args) throws Exception {
     	
-    	new Client("localhost", 2424, args[0]).recieve();
-    	
+    	new Client("localhost", Integer.parseInt(args[0]), args[1]).recieve();
+    
     }
  
 }  

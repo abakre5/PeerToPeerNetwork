@@ -14,7 +14,9 @@ public class Server extends Thread {
     
     public Server(int port) throws IOException {
     	
-    	serverSocket = new ServerSocket(port);
+    	this.serverSocket = new ServerSocket(port);
+    	
+    	System.out.println("Server started at Port :: " + serverSocket.getLocalPort());
     	
     }
     

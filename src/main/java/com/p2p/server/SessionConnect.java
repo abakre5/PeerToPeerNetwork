@@ -10,7 +10,7 @@ import java.net.Socket;
 
 public class SessionConnect implements Runnable {
 
-	private ServerSocket serverSocket;
+	protected ServerSocket serverSocket;
 	
 	private Socket clientSocket;
 
@@ -87,7 +87,7 @@ public class SessionConnect implements Runnable {
 		}
 
 		Integer bytesRead = 0;
-
+		
 		do {
 			
 			try {
