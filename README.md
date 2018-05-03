@@ -8,6 +8,6 @@
 
 <h3>To run client :: </h3>
 
-<p>java -cp target/DecantralizePeerToPeerNetwork-0.0.1-SNAPSHOT.jar com.p2p.client.Client <KEY_GENERATED_BY_SERVER> <FILE_PATH>
+<p>java -cp target/DecantralizePeerToPeerNetwork-0.0.1-SNAPSHOT.jar com.p2p.client.Client KEY_GENERATED_BY_SERVER FILE_PATH
 </p>
 
