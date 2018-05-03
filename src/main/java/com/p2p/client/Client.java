@@ -8,12 +8,14 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Arrays;
-import java.util.Base64;
+import java.util.logging.Logger;
 
 import com.p2p.server.Server;
 
 public class Client {
 
+	private static final Logger LOGGER = Logger.getLogger( Client.class.getName() );
+	
 	private Socket socket;
 
 	private String filePath;
@@ -28,11 +30,11 @@ public class Client {
 
 		} catch (UnknownHostException e) {
 
-			System.out.println("Error : Host not Found");
+			LOGGER.warning("Error : Host not Found");
 
 		} catch (IOException e) {
 
-			System.out.println("Error : Port not Found");
+			LOGGER.warning("Error : Port not Found");
 
 		}
 
@@ -50,7 +52,7 @@ public class Client {
 
 		} catch (IOException e) {
 
-			System.out.println("Error : Error in init Output Stream");
+			LOGGER.warning("Error : Error in init Output Stream");
 
 		}
 
@@ -60,7 +62,7 @@ public class Client {
 
 		} catch (IOException e) {
 
-			System.out.println("Error: Something went wrong");
+			LOGGER.warning("Error: Something went wrong");
 
 		}
 
@@ -72,7 +74,7 @@ public class Client {
 
 		} catch (FileNotFoundException e) {
 
-			System.out.println("Error: Something went wrong");
+			LOGGER.warning("Error: Something went wrong");
 
 		}
 
@@ -92,7 +94,7 @@ public class Client {
 
 		} catch (IOException e) {
 
-			System.out.println("Error: Download Fail");
+			LOGGER.warning("Error: Download Fail");
 
 		}
 
@@ -106,7 +108,7 @@ public class Client {
 
 		} catch (IOException e) {
 
-			System.out.println("Error: Closing connection");
+			LOGGER.warning("Error: Closing connection");
 
 		}
 
@@ -114,37 +116,11 @@ public class Client {
 
 	}
 
-	public static String hostAddress(String hostAddress) {
-
-		byte[] bytes = Base64.getDecoder().decode(hostAddress);
-
-		return new String(bytes);
-
-	}
-
-	public static String getHost(String hostInetAddress) {
-
-		String[] parts = hostInetAddress.split(":");
-
-		parts = parts[0].split("/");
-
-		return parts[1];
-
-	}
-
-	public static int getPort(String hostInetAddress) {
-
-		String[] parts = hostInetAddress.split(":");
-
-		return Integer.parseInt(parts[1]);
-
-	}
-
 	public static void main(String[] args) throws Exception {
 
-		String hostInetAddress = Client.hostAddress(args[0]);
+		String hostInetAddress = ConnectHost.hostAddress(args[0]);
 
-		new Client(Client.getHost(hostInetAddress), Client.getPort(hostInetAddress), args[1]).recieve();
+		new Client(ConnectHost.getHost(hostInetAddress), ConnectHost.getPort(hostInetAddress), args[1]).recieve();
 
 	}
 

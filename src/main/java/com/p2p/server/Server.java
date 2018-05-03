@@ -5,8 +5,11 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Base64;
+import java.util.logging.Logger;
 
 public class Server extends Thread {
+	
+	private static final Logger LOGGER = Logger.getLogger( Server.class.getName() );
 
 	public static final int BUFFER_SIZE = 100;
 
@@ -26,7 +29,7 @@ public class Server extends Thread {
 
 		String bytesEncoded = Base64.getEncoder().encodeToString(hostAddress.getBytes());
 
-		System.out.println("Host Address :: " + bytesEncoded);
+		LOGGER.info("Host Address :: " + bytesEncoded);
 
 	}
 
@@ -44,7 +47,7 @@ public class Server extends Thread {
 
 	public static void main(String[] args) throws IOException {
 
-		new Server(2424).listenClient();
+		new Server(Integer.parseInt(args[0])).listenClient();
 
 	}
 }

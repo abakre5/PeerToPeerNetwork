@@ -1,0 +1,3 @@
+com\p2p\client\Client.class
+com\p2p\server\SessionConnect.class
+com\p2p\server\Server.class

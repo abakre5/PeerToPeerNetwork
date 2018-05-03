@@ -7,9 +7,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Logger;
 
 public class SessionConnect implements Runnable {
 
+	private static final Logger LOGGER = Logger.getLogger( SessionConnect.class.getName() );
+	
 	protected ServerSocket serverSocket;
 	
 	private Socket clientSocket;
@@ -34,7 +37,7 @@ public class SessionConnect implements Runnable {
 		
 		} catch (IOException e) {
 			
-			System.out.println("Error: Something went wrong");
+			LOGGER.warning("Error: Something went wrong");
 			
 		}
 		
@@ -45,7 +48,7 @@ public class SessionConnect implements Runnable {
 		
 		} catch (IOException e) {
 			
-			System.out.println("Error: Something went wrong");
+			LOGGER.warning("Error: Something went wrong");
 			
 		}
 	
@@ -60,11 +63,11 @@ public class SessionConnect implements Runnable {
 		
 		} catch (ClassNotFoundException e) {
 
-			System.out.println("Error: Something went wrong");
+			LOGGER.warning("Error: Something went wrong");
 			
 		} catch (IOException e) {
 
-			System.out.println("Error: Something went wrong");
+			LOGGER.warning("Error: Something went wrong");
 			
 		}
 
@@ -76,13 +79,13 @@ public class SessionConnect implements Runnable {
 			
 			} catch (FileNotFoundException e) {
 				
-				System.out.println("Error: Something went wrong");
+				LOGGER.warning("Error: Something went wrong");
 				
 			}
 		
 		} else {
 		
-			System.out.println("Something went wrong");
+			LOGGER.warning("Something went wrong");
 		
 		}
 
@@ -94,17 +97,17 @@ public class SessionConnect implements Runnable {
 				object = objectInputStream.readObject();
 			} catch (ClassNotFoundException e) {
 				
-				System.out.println("Error: Something went wrong");
+				LOGGER.warning("Error: Something went wrong");
 				
 			} catch (IOException e) {
 				
-				System.out.println("Error: Something went wrong");
+				LOGGER.warning("Error: Something went wrong");
 				
 			}
 
 			if (!(object instanceof Integer)) {
 				
-				System.out.println("Something went wrong");
+				LOGGER.warning("Something went wrong");
 			
 			}
 
@@ -114,17 +117,17 @@ public class SessionConnect implements Runnable {
 				object = objectInputStream.readObject();
 			} catch (ClassNotFoundException e) {
 				
-				System.out.println("Error: Something went wrong");
+				LOGGER.warning("Error: Something went wrong");
 				
 			} catch (IOException e) {
 				
-				System.out.println("Error: Something went wrong");
+				LOGGER.warning("Error: Something went wrong");
 				
 			}
 
 			if (!(object instanceof byte[])) {
 				
-				System.out.println("Something went wrong");
+				LOGGER.warning("Something went wrong");
 			
 			}
 
@@ -136,13 +139,13 @@ public class SessionConnect implements Runnable {
 			
 			} catch (IOException e) {
 				
-				System.out.println("Error: Something went wrong");
+				LOGGER.warning("Error: Something went wrong");
 				
 			}
 
 		} while (bytesRead == Server.BUFFER_SIZE);
 
-		System.out.println("File transfer success");
+		LOGGER.info("File transfer success");
 
 		try {
 			fileOutputStream.close();
@@ -153,7 +156,7 @@ public class SessionConnect implements Runnable {
 			
 		} catch (IOException e) {
 			
-			System.out.println("Error: Something went wrong");
+			LOGGER.warning("Error: Something went wrong");
 			
 		}
 
