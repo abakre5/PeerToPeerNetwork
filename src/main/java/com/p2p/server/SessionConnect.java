@@ -160,8 +160,6 @@ public class SessionConnect implements Runnable {
 			
 		}
 
-		
-
 	}
 
 }

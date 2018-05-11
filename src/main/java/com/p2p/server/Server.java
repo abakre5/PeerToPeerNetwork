@@ -5,6 +5,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Base64;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class Server extends Thread {
@@ -16,16 +17,25 @@ public class Server extends Thread {
 	private ServerSocket serverSocket;
 
 	private Socket clientSocket;
+	
+	private String filePath;
 
-	public Server(int port) throws IOException {
+	@SuppressWarnings("resource")
+	public Server() throws IOException {
 
-		this.serverSocket = new ServerSocket(63454);
+		this.serverSocket = new ServerSocket(0);
 
 		serverSocket.getInetAddress();
-
+		
+		LOGGER.info("Enter file path :: ");
+		
+		this.filePath = new Scanner(System.in).nextLine();
+		
 		String hostAddress = InetAddress.getLocalHost().toString();
 
 		hostAddress += ":" + serverSocket.getLocalPort();
+		
+		hostAddress += "@" + filePath;
 
 		String bytesEncoded = Base64.getEncoder().encodeToString(hostAddress.getBytes());
 
@@ -46,8 +56,8 @@ public class Server extends Thread {
 	}
 
 	public static void main(String[] args) throws IOException {
-
-		new Server(Integer.parseInt(args[0])).listenClient();
+			
+		new Server().listenClient();
 
 	}
 }

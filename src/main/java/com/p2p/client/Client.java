@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Arrays;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 import com.p2p.server.Server;
@@ -23,7 +24,10 @@ public class Client {
 	public Client(String host, int port, String filePath) {
 
 		this.filePath = filePath;
+		
 
+		LOGGER.info("File to Download :: " + this.filePath);
+		
 		try {
 
 			this.socket = new Socket(host, port);
@@ -112,15 +116,20 @@ public class Client {
 
 		}
 
+		LOGGER.info("File Download Successful");
+		
 		System.exit(0);
 
 	}
 
+	@SuppressWarnings("resource")
 	public static void main(String[] args) throws Exception {
+		
+		LOGGER.info("Enter Host Address :: ");
+		
+		String hostInetAddress = ConnectHost.hostAddress(new Scanner(System.in).nextLine());
 
-		String hostInetAddress = ConnectHost.hostAddress(args[0]);
-
-		new Client(ConnectHost.getHost(hostInetAddress), ConnectHost.getPort(hostInetAddress), args[1]).recieve();
+		new Client(ConnectHost.getHost(hostInetAddress), ConnectHost.getPort(hostInetAddress), ConnectHost.getFilePath(hostInetAddress)).recieve();
 
 	}
 

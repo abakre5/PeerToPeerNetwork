@@ -3,7 +3,7 @@ package com.p2p.client;
 import java.util.Base64;
 
 public class ConnectHost {
-	
+
 	public static String hostAddress(String hostAddress) {
 
 		byte[] bytes = Base64.getDecoder().decode(hostAddress);
@@ -26,8 +26,20 @@ public class ConnectHost {
 
 		String[] parts = hostInetAddress.split(":");
 
-		return Integer.parseInt(parts[1]);
+		hostInetAddress = parts[1];
+
+		parts = hostInetAddress.split("@");
+
+		return Integer.parseInt(parts[0]);
 
 	}
-	
+
+	public static String getFilePath(String hostInetAddress) {
+
+		String[] parts = hostInetAddress.split("@");
+
+		return parts[1];
+		
+	}
+
 }
